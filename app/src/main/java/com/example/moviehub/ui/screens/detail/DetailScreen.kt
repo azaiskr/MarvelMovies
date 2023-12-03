@@ -20,6 +20,10 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -56,13 +60,16 @@ fun DetailScreen(
                 detailViewModel.getMovieDetail(movieId)
             }
 
-            is UiState.Success -> DetailContent(
-                movieDetail = detailUiState.data,
-                modifier = modifier,
-                setBookmark= {movieItem ->
-                    detailViewModel.setBookmark(movieItem.movieData.id)
-                }
-            )
+            is UiState.Success -> {
+                val movie = detailUiState.data
+                DetailContent(
+                    movieDetail = movie,
+                    modifier = modifier,
+                    updateMovieState = {movieId, isBookmarked ->
+                        detailViewModel.updateMovieState(movieId, isBookmarked)
+                    }
+                )
+            }
 
             is UiState.Error -> ErrorScreen(
                 retryAction = { detailViewModel.getMovieDetail(movieId) },
@@ -78,9 +85,14 @@ fun DetailScreen(
 fun DetailContent(
     movieDetail: MovieItem,
     modifier: Modifier = Modifier,
-    setBookmark: (MovieItem) -> Unit
+    updateMovieState: (String, Boolean) -> Unit,
+//    setBookmark: (isBookmark: Boolean) -> Unit,
 ) {
     val scrollState = rememberScrollState()
+    var isBookmarked by rememberSaveable {
+        mutableStateOf(movieDetail.isBookmarked)
+    }
+
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -115,9 +127,10 @@ fun DetailContent(
                     .size(32.dp)
             ) {
                 BtnBookmark(
-                    setBookmark = setBookmark,
-                    movieItem = movieDetail,
-                    isBookmarked = movieDetail.isBookmarked,
+                    isBookmarked = isBookmarked,
+                    movieId = movieDetail.movieData.id,
+                    onBtnBookmarkClick = { isBookmarked = !isBookmarked },
+                    updateMovieState = updateMovieState,
                 )
             }
         }

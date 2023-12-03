@@ -74,9 +74,10 @@ fun SearchScreen(
                 MovieGridView(
                     movies = movieItem,
                     navController = navController,
-                    setBookmark = {movieItem ->
-                        searchViewModel.setBookmark(movieItem.movieData.id)
-                    }
+                    updateMovieState = searchViewModel::updateMovieState,
+//                    setBookmark = {movieItem ->
+//                        searchViewModel.setBookmark(movieItem.movieData.id)
+//                    }
                 )
             } else {
                 OnBoardSearchScreen(

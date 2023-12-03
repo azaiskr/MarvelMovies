@@ -32,7 +32,9 @@ fun HomeScreen(
                 movies = homeUiState.data,
                 modifier = modifier,
                 navController = navController,
-                setBookmark = { movieItem ->   homeViewModel.setBookmark(movieItem.movieData.id)}
+                updateMovieState = { movieId, isBookmarked ->
+                    homeViewModel.updateMovieState(movieId, isBookmarked)
+                }
             )
             is UiState.Error -> ErrorScreen(
                 retryAction = { homeViewModel.getMovieList() },

@@ -6,6 +6,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.example.moviehub.R
@@ -13,14 +15,18 @@ import com.example.moviehub.model.MovieItem
 
 @Composable
 fun BtnBookmark(
-    setBookmark: (MovieItem) -> Unit,
+    movieId : String,
     isBookmarked: Boolean,
-    movieItem: MovieItem,
+    onBtnBookmarkClick: (String) -> Unit,
+    updateMovieState: (String, Boolean) -> Unit,
 ) {
     FilledIconButton(
-        onClick = { setBookmark(movieItem) },
+        onClick = {
+            onBtnBookmarkClick(movieId)
+            updateMovieState(movieId, !isBookmarked)
+        },
         colors = IconButtonDefaults.iconButtonColors(
-            containerColor = MaterialTheme.colorScheme.surface
+            containerColor = Color.DarkGray
         ),
         shape = CircleShape,
     ) {

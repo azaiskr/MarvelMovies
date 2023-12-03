@@ -29,10 +29,16 @@ class BookmarkViewModel(
         }
     }
 
-    fun setBookmark(id: String) {
+    fun updateMovieState(movieId: String, isBookmarked: Boolean) {
         viewModelScope.launch {
-            repo.setBookmark(id)
+            repo.updateMovieState(movieId, isBookmarked)
         }
     }
+
+//    fun setBookmark(id: String) {
+//        viewModelScope.launch {
+//            repo.setBookmark(id)
+//        }
+//    }
 
 }

@@ -26,6 +26,20 @@ class MovieRepo {
         }
     }
 
+    fun updateMovieState(movieId: String, isBookmarked: Boolean): Flow<Boolean>{
+        val index = movies.indexOfFirst {
+            it.movieData.id == movieId
+        }
+        val result = if (index >= 0){
+            val movieItem = movies[index]
+            movies[index] = movieItem.copy(movieData = movieItem.movieData, isBookmarked = isBookmarked)
+            true
+        } else {
+            false
+        }
+        return flowOf(result)
+    }
+
     fun getBookmarkedMovies(): Flow<List<MovieItem>> {
         return getMovies().map { movies ->
             movies.filter { it.isBookmarked }

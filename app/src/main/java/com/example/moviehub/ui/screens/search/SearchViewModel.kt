@@ -15,6 +15,7 @@ class SearchViewModel(
     private val _query = MutableStateFlow("")
     val query = _query.asStateFlow()
 
+
     val movieItem = query
         .combine(movieRepo.getMovies()) { query, movieList ->
             if (query.isEmpty()) {
@@ -35,8 +36,12 @@ class SearchViewModel(
         _query.value = query
     }
 
-    fun setBookmark(movieId: String) {
-        movieRepo.setBookmark(movieId)
+    fun updateMovieState(movieId: String, isBookmarked: Boolean) {
+        movieRepo.updateMovieState(movieId, isBookmarked)
     }
+
+//    fun setBookmark(movieId: String) {
+//        movieRepo.setBookmark(movieId)
+//    }
 
 }

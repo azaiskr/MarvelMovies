@@ -19,7 +19,8 @@ fun MovieGridView(
     movies: List<MovieItem>,
     navController: NavHostController,
     modifier: Modifier = Modifier,
-    setBookmark: (MovieItem) -> Unit,
+
+    updateMovieState: (String, Boolean) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(160.dp),
@@ -35,7 +36,7 @@ fun MovieGridView(
                         navController.navigate(Screen.DetailMovie.createRoute(data.movieData.id))
                     },
                     movie = data,
-                    setBookmark = setBookmark,
+                    updateMovieState = updateMovieState,
                 )
             }
         },

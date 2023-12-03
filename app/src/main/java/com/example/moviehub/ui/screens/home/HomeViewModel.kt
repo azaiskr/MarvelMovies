@@ -7,6 +7,7 @@ import com.example.moviehub.model.MovieItem
 import com.example.moviehub.ui.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 
@@ -14,9 +15,12 @@ class HomeViewModel (
     private val movieRepository: MovieRepo
 ): ViewModel(){
 
-    private val _homeUiState = MutableStateFlow<UiState<List<MovieItem>>>(UiState.Loading)
-    val homeUiState: StateFlow<UiState<List<MovieItem>>>
-        get() = _homeUiState
+    private val _homeUiState =
+        MutableStateFlow<UiState<List<MovieItem>>>(UiState.Loading)
+    val homeUiState = _homeUiState.asStateFlow()
+
+//            StateFlow<UiState<List<MovieItem>>>
+//        get() = _homeUiState
 
     fun getMovieList(){
         viewModelScope.launch {
@@ -30,9 +34,13 @@ class HomeViewModel (
         }
     }
 
-    fun setBookmark(movieId: String) {
+    fun updateMovieState(movieId: String, isBookmarked: Boolean){
         viewModelScope.launch {
-            movieRepository.setBookmark(movieId)
+            movieRepository.updateMovieState(movieId, isBookmarked).collect{isUpdated ->
+                if(isUpdated){
+                    getMovieList()
+                }
+            }
         }
     }
 }

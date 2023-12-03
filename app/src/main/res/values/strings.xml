@@ -3,6 +3,7 @@
     <string name="error">Failed to load data</string>
     <string name="retry">Retry</string>
     <string name="movie_poster">Movie poster</string>
+    <string name="action_profile">action profile</string>
     <string name="action_bookmark_collections">action bookmark collections</string>
     <string name="action_search">action search</string>
     <string name="iv_profile_url"><![CDATA[https://media.licdn.com/dms/image/D5603AQF5ZrtDNXCF6w/profile-displayphoto-shrink_800_800/0/1695151698442?e=2147483647&v=beta&t=ZV8Re3naGH5vXoXhBhZmhjDV3yyDAV5gAtnd8RZHSx8]]></string>

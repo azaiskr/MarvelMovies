@@ -48,7 +48,10 @@ fun BookmarkScreen(
                         movies = bookmarkUiState.data,
                         modifier = modifier,
                         navController = navController,
-                        setBookmark = { movieItem ->   bookmarkViewModel.setBookmark(movieItem.movieData.id)}
+                        updateMovieState = { movieId, isBookmarked ->
+                            bookmarkViewModel.updateMovieState(movieId, isBookmarked)
+                        }
+//                        setBookmark = { movieItem ->   bookmarkViewModel.setBookmark(movieItem.movieData.id)}
                     )
 
                 }
