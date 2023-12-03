@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Marvel Movies</string>
+    <string name="error">Failed to load data</string>
+    <string name="retry">Retry</string>
+    <string name="movie_poster">Movie poster</string>
+    <string name="action_bookmark_collections">action bookmark collections</string>
+    <string name="action_search">action search</string>
+    <string name="iv_profile_url"><![CDATA[https://media.licdn.com/dms/image/D5603AQF5ZrtDNXCF6w/profile-displayphoto-shrink_800_800/0/1695151698442?e=2147483647&v=beta&t=ZV8Re3naGH5vXoXhBhZmhjDV3yyDAV5gAtnd8RZHSx8]]></string>
+    <string name="profile_image">Profile Image</string>
+    <string name="profile_name">N Azis Kurnia R</string>
+    <string name="profile_email">nuraziss557@gmail.com</string>
+    <string name="search_bar_hint">Find Marvel Movie</string>
+    <string name="search_view_onboar">Find Marvel Cinematic Universe Movies Here. Type the movie name!</string>
+    <string name="movie_not_found">Oops! We cannot found any movie with name : %1$s</string>
+    <string name="bookmark_screen_placeholder">"It's look like you don't have any bookmarked movies yet. Let's bookmark your favorite movies! "</string>
+</resources>
