@@ -3,7 +3,6 @@ package com.example.moviehub.data
 import com.example.moviehub.model.MovieItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.map
 
 class MovieRepo {
     private val movies = mutableListOf<MovieItem>()
@@ -30,26 +29,13 @@ class MovieRepo {
         val index = movies.indexOfFirst {
             it.movieData.id == movieId
         }
-        val result = if (index >= 0){
-            val movieItem = movies[index]
-            movies[index] = movieItem.copy(movieData = movieItem.movieData, isBookmarked = isBookmarked)
+        val result = if (index >= 0) {
+            movies[index] = movies[index].copy(isBookmarked = isBookmarked)
             true
         } else {
             false
         }
         return flowOf(result)
-    }
-
-    fun getBookmarkedMovies(): Flow<List<MovieItem>> {
-        return getMovies().map { movies ->
-            movies.filter { it.isBookmarked }
-        }
-    }
-
-    fun setBookmark(id: String) {
-        movies.find { it.movieData.id == id }?.let {
-            it.isBookmarked = !it.isBookmarked
-        }
     }
 
     companion object {

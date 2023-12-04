@@ -3,7 +3,6 @@ package com.example.moviehub.ui.screens.detail
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviehub.data.MovieRepo
-import com.example.moviehub.model.MovieData
 import com.example.moviehub.model.MovieItem
 import com.example.moviehub.ui.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,11 +31,5 @@ class DetailViewModel (
             movieRepository.updateMovieState(movie, isBookmark)
         }
     }
-
-//    fun setBookmark(movie: MovieData, isBookmark: Boolean){
-//        viewModelScope.launch {
-//            movieRepository.updateMovieState(movie.id, isBookmark)
-//        }
-//    }
 
 }

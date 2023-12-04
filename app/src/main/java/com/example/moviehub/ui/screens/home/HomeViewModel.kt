@@ -6,7 +6,6 @@ import com.example.moviehub.data.MovieRepo
 import com.example.moviehub.model.MovieItem
 import com.example.moviehub.ui.UiState
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
@@ -18,9 +17,6 @@ class HomeViewModel (
     private val _homeUiState =
         MutableStateFlow<UiState<List<MovieItem>>>(UiState.Loading)
     val homeUiState = _homeUiState.asStateFlow()
-
-//            StateFlow<UiState<List<MovieItem>>>
-//        get() = _homeUiState
 
     fun getMovieList(){
         viewModelScope.launch {

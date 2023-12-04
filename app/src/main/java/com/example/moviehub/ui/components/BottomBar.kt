@@ -40,10 +40,10 @@ fun MovieHubBottomBar(
                 onClick = {
                     if (currentRoute != Screen.Bookmark.route) navController.navigate(Screen.Bookmark.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true //cari tau buat apa
+                            saveState = true
                         }
                         launchSingleTop = true
-                        restoreState = true //cari tau buat apa
+                        restoreState = true
                     }
                 },
                 colors = IconButtonDefaults.iconButtonColors(
@@ -61,10 +61,10 @@ fun MovieHubBottomBar(
                 onClick = {
                     if (currentRoute != Screen.Search.route) navController.navigate(Screen.Search.route) {
                         popUpTo(navController.graph.findStartDestination().id) {
-                            saveState = true //cari tau buat apa
+                            saveState = true
                         }
                         launchSingleTop = true
-                        restoreState = true //cari tau buat apa
+                        restoreState = true
                     }
                 },
                 colors = IconButtonDefaults.iconButtonColors(

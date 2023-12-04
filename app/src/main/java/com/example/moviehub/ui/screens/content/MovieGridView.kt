@@ -19,7 +19,6 @@ fun MovieGridView(
     movies: List<MovieItem>,
     navController: NavHostController,
     modifier: Modifier = Modifier,
-
     updateMovieState: (String, Boolean) -> Unit,
 ) {
     LazyVerticalGrid(

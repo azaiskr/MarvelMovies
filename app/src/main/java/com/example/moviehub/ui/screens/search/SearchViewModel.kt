@@ -15,7 +15,6 @@ class SearchViewModel(
     private val _query = MutableStateFlow("")
     val query = _query.asStateFlow()
 
-
     val movieItem = query
         .combine(movieRepo.getMovies()) { query, movieList ->
             if (query.isEmpty()) {
@@ -28,7 +27,7 @@ class SearchViewModel(
         }
         .stateIn(
             scope = viewModelScope,
-            started = SharingStarted.WhileSubscribed(5000),
+            started = SharingStarted.WhileSubscribed(5),
             initialValue = listOf()
         )
 
@@ -40,8 +39,5 @@ class SearchViewModel(
         movieRepo.updateMovieState(movieId, isBookmarked)
     }
 
-//    fun setBookmark(movieId: String) {
-//        movieRepo.setBookmark(movieId)
-//    }
 
 }

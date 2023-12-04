@@ -10,7 +10,7 @@ import androidx.compose.material3.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,9 +30,7 @@ fun MovieItem(
     movie: MovieItem,
     updateMovieState: (String, Boolean) -> Unit,
 ) {
-    var isBookmarked by rememberSaveable {
-        mutableStateOf(movie.isBookmarked)
-    }
+    var isBookmarked by remember { mutableStateOf(movie.isBookmarked) }
 
     Card(
         modifier = Modifier
@@ -60,10 +58,12 @@ fun MovieItem(
                     .size(32.dp)
             ) {
                 BtnBookmark(
-                    isBookmarked = movie.isBookmarked,
                     movieId = movie.movieData.id,
-                    onBtnBookmarkClick = {isBookmarked = !isBookmarked},
-
+                    isBookmarked = isBookmarked,
+                    onBtnBookmarkClick = {
+                        isBookmarked = !isBookmarked
+                        updateMovieState(movie.movieData.id, isBookmarked)
+                    },
                     updateMovieState = updateMovieState,
                 )
             }

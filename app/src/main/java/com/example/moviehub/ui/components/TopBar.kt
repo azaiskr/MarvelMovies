@@ -58,10 +58,10 @@ fun MovieHubTopBar(
                     if(currentRoute!= Screen.Profile.route){
                         navController.navigate(Screen.Profile.route){
                             popUpTo(navController.graph.findStartDestination().id){
-                                saveState = true // cari tau buat apa
+                                saveState = true
                             }
                             launchSingleTop = true
-                            restoreState = true //cari tau buat apa
+                            restoreState = true
                         }
                     }
                 }

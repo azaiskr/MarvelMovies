@@ -74,11 +74,12 @@ fun SearchScreen(
                 MovieGridView(
                     movies = movieItem,
                     navController = navController,
-                    updateMovieState = searchViewModel::updateMovieState,
-//                    setBookmark = {movieItem ->
-//                        searchViewModel.setBookmark(movieItem.movieData.id)
-//                    }
-                )
+                ) { movieId, isBookmarked ->
+                    searchViewModel.updateMovieState(
+                        movieId,
+                        isBookmarked
+                    )
+                }
             } else {
                 OnBoardSearchScreen(
                     message = stringResource(R.string.movie_not_found, query),
