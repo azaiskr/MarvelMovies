@@ -68,29 +68,29 @@ fun SearchScreen(
             },
             modifier = Modifier.fillMaxWidth(),
         ) {
-        }
-        if (query.isNotEmpty()) {
-            if (movieItem.isNotEmpty()) {
-                MovieGridView(
-                    movies = movieItem,
-                    navController = navController,
-                ) { movieId, isBookmarked ->
-                    searchViewModel.updateMovieState(
-                        movieId,
-                        isBookmarked
+            if (query.isNotEmpty()) {
+                if (movieItem.isNotEmpty()) {
+                    MovieGridView(
+                        movies = movieItem,
+                        navController = navController,
+                    ) { movieId, isBookmarked ->
+                        searchViewModel.updateMovieState(
+                            movieId,
+                            isBookmarked
+                        )
+                    }
+                } else {
+                    OnBoardSearchScreen(
+                        message = stringResource(R.string.movie_not_found, query),
+                        icon = Icons.Rounded.Warning,
                     )
                 }
             } else {
                 OnBoardSearchScreen(
-                    message = stringResource(R.string.movie_not_found, query),
-                    icon = Icons.Rounded.Warning,
+                    message = stringResource(id = R.string.search_view_onboar),
+                    icon = Icons.Rounded.Search,
                 )
             }
-        } else {
-            OnBoardSearchScreen(
-                message = stringResource(id = R.string.search_view_onboar),
-                icon = Icons.Rounded.Search,
-            )
         }
     }
 }

@@ -55,9 +55,9 @@ fun MovieHubTopBar(
         actions = {
             IconButton(
                 onClick = {
-                    if(currentRoute!= Screen.Profile.route){
-                        navController.navigate(Screen.Profile.route){
-                            popUpTo(navController.graph.findStartDestination().id){
+                    if (currentRoute != Screen.Profile.route) {
+                        navController.navigate(Screen.Profile.route) {
+                            popUpTo(navController.graph.findStartDestination().id) {
                                 saveState = true
                             }
                             launchSingleTop = true
@@ -80,3 +80,57 @@ fun MovieHubTopBar(
         },
     )
 }
+
+
+/*
+    === BEST PRACTICE ===
+
+    interface NavigationCallback {
+        fun navigateToProfile()
+    }
+
+    @OptIn(ExperimentalMaterial3Api::class)
+    @Composable
+    fun MovieHubTopBar(
+        scrollBehavior: TopAppBarScrollBehavior,
+        navigationCallback: NavigationCallback // Pass the callback as a parameter
+    ) {
+        // ... (existing code)
+
+        actions = {
+            IconButton(
+                onClick = {
+                    if (currentRoute != Screen.Profile.route) {
+                        navigationCallback.navigateToProfile() // Call the callback when the button is clicked
+                    }
+                }
+            ) {
+                // ... (existing code)
+            }
+        }
+        // ... (existing code)
+    }
+
+
+    class MovieHubScreen(
+        private val navController: NavHostController
+    ) : NavigationCallback {
+
+        // ... (other methods and properties)
+
+        // Implementation of the callback interface
+        override fun navigateToProfile() {
+            navController.navigate(Screen.Profile.route) {
+                popUpTo(navController.graph.findStartDestination().id) {
+                    saveState = true
+                }
+                launchSingleTop = true
+                restoreState = true
+            }
+        }
+
+        // ... (rest of the class)
+    }
+
+
+ */
